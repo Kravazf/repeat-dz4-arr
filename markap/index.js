@@ -1,12 +1,18 @@
-function calculateSum() {
-  let sum = 5;
-  function clouserSum(number) {
-    sum += number
-    return sum
+const arr = [1, 2, [10, 20], [100, 200, [30, 40, [1000, 2000]]]];
+
+function deepClone(array) {
+  const copyArray = [];
+
+  for (let i = 0; i <array.length; i++) {
+    if (Array.isArray(array[i])) {
+      const tempClone = deepClone(array[i]);
+      copyArray.push(tempClone);
+    } else {
+      copyArray.push(array[i]);
+    }
   }
-  return clouserSum;
+
+  return copyArray;
 }
 
-let resultCalculateSum = calculateSum();
-console.log(resultCalculateSum(10));
-console.log(resultCalculateSum(10));
+console.log(deepClone(arr));
